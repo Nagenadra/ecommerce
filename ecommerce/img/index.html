@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Registration</title>
+    <style>body {
+        font-family: Arial, sans-serif;
+        background-color: #2e3b61;
+        color: #ffffff;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    
+    .container {
+        background-color: #ffffff;
+        color: #2e3b61;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 80%;
+        max-width: 600px;
+    }
+    
+    h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    label {
+        margin-top: 10px;
+    }
+    
+    input, select, button {
+        padding: 10px;
+        margin-top: 10px;
+        border: 2px solid #2e3b61;
+        border-radius: 4px;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    button {
+        background-color: #2e3b61;
+        color: #ffffff;
+        cursor: pointer;
+        border: none;
+    }
+    
+    button:hover {
+        background-color: #25324a;
+    }
+    
+    .registrations {
+        margin-top: 30px;
+    }
+    
+    .registrations div {
+        margin-top: 20px;
+    }
+    
+    h2 {
+        font-size: 20px;
+        border-bottom: 1px solid #ffffff;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    ul li {
+        margin: 5px 0;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Event Registration</h1>
+        <form id="registrationForm">
+            <select id="event" name="event" required>
+                <option value="" disabled selected>Choose an Event</option>
+                <option value="trekking">Trekking</option>
+                <option value="rockClimbing">Rock Climbing</option>
+                <option value="hiking">Hiking</option>
+            </select>
+            <input type="text" id="name" name="name" value="Enter your name">
+            
+            <button type="submit">Add</button>
+        </form>
+        <div class="registrations">
+            <div>
+                <h2>Trekking</h2>
+                <ul id="trekkingList"></ul>
+            </div>
+            <div>
+                <h2>Rock Climbing</h2>
+                <ul id="rockClimbingList"></ul>
+            </div>
+            <div>
+                <h2>Hiking</h2>
+                <ul id="hikingList"></ul>
+            </div>
+        </div>
+    </div>
+    <script>document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const selectedEvent = document.getElementById('event').value;
+        
+        if (name && selectedEvent) {
+            const listId = selectedEvent + 'List';
+            const listItem = document.createElement('li');
+            listItem.textContent = name;
+            document.getElementById(listId).appendChild(listItem);
+    
+            document.getElementById('name').value = '';
+            document.getElementById('event').value = '';
+        }
+    });
+    </script>
+</body>
+</html>
